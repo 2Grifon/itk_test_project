@@ -3,12 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # from fastapi_pagination import add_pagination
 
-# TODO: import all models here to ensure they are registered with SQLAlchemy
-
 from app.core.config import settings
+from app.modules.wallet import models  # noqa: F401
+from app.modules.wallet.routes import router as wallet_router
 
 app = FastAPI(
-    title="Template project API",  # TODO изменить название
+    title="ITK test project API",
 )
 
 if settings.all_cors_origins:
@@ -22,7 +22,7 @@ if settings.all_cors_origins:
 
 main_router = APIRouter(prefix="/api", tags=["API"])
 
-# main_router.include_router()  # TODO подключить роутеры
+main_router.include_router(wallet_router)
 
 app.include_router(main_router)
 
