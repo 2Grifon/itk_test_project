@@ -1,0 +1,39 @@
+services:
+  backend:
+    container_name: itk_test_project_backend
+    build: backend/
+    restart: always
+    volumes:
+      - ./backend:/backend/
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - main_network
+
+  postgres:
+    container_name: itk_test_project_postgres
+    command:
+      - "postgres"
+      - "-c"
+      - "max_connections=500"
+    image: postgres:15-alpine
+    restart: always
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    # expose:
+    #   - 5432
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    networks:
+      - main_network
+
+networks:
+  main_network:
+volumes:
+  postgresql-data:
