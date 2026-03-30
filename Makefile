@@ -45,6 +45,11 @@ db-bash:
 psql:
 	docker exec -it $(app_name)_postgres psql -U postgres
 
+start-tests:
+	$(docker_compose) up -d $(c)
+	docker exec -t $(app_name)_backend pytest
+
+
 #Alembic
 
 alembic:

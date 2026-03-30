@@ -1,1 +1,1 @@
-from .wallet import WalletServiceDependency
+from .wallet import WalletServiceDependency, WalletService
