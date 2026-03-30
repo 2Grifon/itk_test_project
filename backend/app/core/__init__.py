@@ -1,1 +1,1 @@
-from app.core.base_models import UUIDModelBase, TimestampedModelBase
+from app.core.base_models import UUIDModelBase
